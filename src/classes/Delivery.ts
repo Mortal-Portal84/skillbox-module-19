@@ -1,5 +1,7 @@
 import { createSubtitleWithInfo } from '../utils'
 
+type DeliveryField = 'name' | 'address' | 'distance'
+
 export class Delivery {
   private id: string = crypto.randomUUID()
   private name: string
@@ -13,29 +15,33 @@ export class Delivery {
     this.render()
   }
 
-  render () {
+  render (key?: DeliveryField) {
     const cardList = document.getElementById('card-list')
     let card = cardList?.querySelector(`[data-id="${this.id}"]`) as HTMLElement | null
 
-    if (card) {
-      card.replaceChildren()
-    } else {
-      card = document.createElement('div')
-      card.dataset.id = this.id
-      card.className = 'delivery-card'
-      cardList?.append(card)
+    if (card && key) {
+      const cardElement = card.querySelector(`.card__${key}`) as HTMLParagraphElement | null
+      if (cardElement) {
+        cardElement.innerText = this[key].toString()
+      }
+      return
     }
 
-    const nameElement = createSubtitleWithInfo('Имя', this.name)
-    const addressElement = createSubtitleWithInfo('Адрес', this.address)
-    const distanceElement = createSubtitleWithInfo('Расстояние', `${this.distance} км`)
+    card = document.createElement('div')
+    card.dataset.id = this.id
+    card.className = 'card'
+
+    const nameElement = createSubtitleWithInfo('Имя', this.name, 'card__name')
+    const addressElement = createSubtitleWithInfo('Адрес', this.address, 'card__address')
+    const distanceElement = createSubtitleWithInfo('Расстояние', `${this.distance}`, 'card__distance')
 
     card.append(nameElement, addressElement, distanceElement)
+    cardList?.append(card)
   }
 
   setName (value: string) {
     this.name = value
-    this.render()
+    this.render('name')
   }
 
   getName () {
@@ -44,7 +50,7 @@ export class Delivery {
 
   setAddress (value: string) {
     this.address = value
-    this.render()
+    this.render('address')
   }
 
   getAddress () {
@@ -53,10 +59,11 @@ export class Delivery {
 
   setDistance (value: number) {
     this.distance = value
-    this.render()
+    this.render('distance')
   }
 
   getDistance () {
     return this.distance
   }
 }
+

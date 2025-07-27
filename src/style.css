@@ -72,7 +72,7 @@ p {
   gap: 1em;
 }
 
-.delivery-card {
+.card {
   padding: 0.5em;
   min-width: 15em;
   text-align: left;
@@ -81,7 +81,14 @@ p {
   border-radius: 0.6em;
 }
 
-.delivery-card .info-wrapper:not(:first-child) {
+.card__name,
+.card__address,
+.card__distance,
+.card__distance-unit {
+  font-weight: bold;
+}
+
+.card .info-wrapper:not(:first-child) {
   margin-top: 1em;
 }
 

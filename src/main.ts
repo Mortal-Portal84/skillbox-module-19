@@ -8,6 +8,4 @@ const deliveryList = [
   new Delivery('Оля', 'ул. Ткачей, д. 43', 11),
 ]
 
-deliveryList.forEach(listItem => listItem.render())
-
-deliveryList[0].setName('Жора')
+deliveryList[2].setDistance(88)
