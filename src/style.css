@@ -65,7 +65,7 @@ p {
   margin: 0;
 }
 
-.card-list {
+#card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
