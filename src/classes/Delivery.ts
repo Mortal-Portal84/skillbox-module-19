@@ -1,14 +1,38 @@
 import { createSubtitleWithInfo } from '../utils'
 
 export class Delivery {
-  name: string
-  address: string
-  distance: number
+  protected name: string
+  protected address: string
+  protected distance: number
 
   constructor (name: string, address: string, distance: number) {
     this.name = name
     this.address = address
     this.distance = distance
+  }
+
+  setName (value: string) {
+    this.name = value
+  }
+
+  getName () {
+    return this.name
+  }
+
+  setAddress (value: string) {
+    this.address = value
+  }
+
+  getAddress () {
+    return this.address
+  }
+
+  setDistance (value: number) {
+    this.distance = value
+  }
+
+  getDistance () {
+    return this.distance
   }
 
   renderDeliveryCard () {
