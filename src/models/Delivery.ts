@@ -1,5 +1,4 @@
-import { createSubtitleWithInfo } from '../utils'
-import { createModal } from '../utils'
+import { createSubtitleWithInfo, createModal } from '../utils'
 import { Status } from '../constants'
 
 export class Delivery {
