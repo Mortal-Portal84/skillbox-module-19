@@ -24,8 +24,8 @@ export class Delivery {
 
     if (card && key) {
       if(key === 'status' as keyof Delivery) {
-        card.classList.remove()
-        card.classList.add('card', `card--${this.status}`)
+        card.className = 'card'
+        card.classList.add(`card--${this.status}`)
         return
       }
 

@@ -1,6 +1,6 @@
-import { validateTypedName, validateTypedNumber } from './index.ts'
 import { Delivery, EditDelivery } from '../models'
-import { Status } from '../constants'
+import { Status, StatusValue } from '../constants'
+import { validateTypedName, validateTypedNumber } from './validators.ts'
 
 export const openModal = (delivery: EditDelivery) => {
   const existingModal = document.getElementById('modal')
@@ -59,7 +59,7 @@ export const openModal = (delivery: EditDelivery) => {
     dialog.remove()
   })
 
-  Object.entries(Status).map(([key, value]) => {
+  Object.entries(StatusValue).map(([key, value]) => {
     const optionElement = document.createElement('option')
     optionElement.value = key
     optionElement.textContent = value
