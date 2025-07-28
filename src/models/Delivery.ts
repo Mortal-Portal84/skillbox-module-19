@@ -1,5 +1,4 @@
-import { createSubtitleWithInfo } from '../utils'
-import { createModal } from '../utils'
+import { createModal, createSubtitleWithInfo } from '../utils'
 import { Status } from '../constants'
 
 export class Delivery {
@@ -24,8 +23,8 @@ export class Delivery {
 
     if (card && key) {
       if(key === 'status' as keyof Delivery) {
-        card.classList.remove()
-        card.classList.add('card', `card--${this.status}`)
+        card.className = 'card'
+        card.classList.add(`card--${this.status}`)
         return
       }
 

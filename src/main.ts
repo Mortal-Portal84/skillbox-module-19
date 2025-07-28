@@ -1,5 +1,6 @@
 import { Delivery, EditDelivery } from './models'
 import './style.css'
+import { renderCalculator } from './utils'
 
 let deliveryList = [
   new Delivery('Ольга', 'ул. Вымыслов, д. 12', 8),
@@ -19,3 +20,5 @@ export const modifyDelivery = (delivery: EditDelivery) => {
     return item
   })
 }
+
+renderCalculator(deliveryList)

@@ -1,12 +1,20 @@
 import { Delivery } from './Delivery'
 import { openModal } from '../utils'
 import { modifyDelivery } from '../main'
-import type { Status } from '../constants'
+import { Status } from '../constants'
 
 export class EditDelivery extends Delivery {
   constructor (name: string, address: string, distance: number, id: string, status: Status) {
     super(name, address, distance, id, status)
     this.render()
+  }
+
+  static getTotalDistance(deliveries: Delivery[]): number {
+    return deliveries.reduce((acc, delivery) =>
+      acc + (delivery.getStatus() === Status.canceled
+        ? 0
+        : delivery.getDistance()
+      ), 0)
   }
 
   onSave (name: string, address: string, distance: number, status: Status) {
