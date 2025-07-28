@@ -1,1 +1,1 @@
-export * from './Delivery.ts'
+export * from './Delivery'

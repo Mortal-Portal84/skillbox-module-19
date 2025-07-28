@@ -1,5 +1,4 @@
-import { Delivery } from './classes'
-
+import { Delivery } from './models'
 import './style.css'
 
 const deliveryList = [
