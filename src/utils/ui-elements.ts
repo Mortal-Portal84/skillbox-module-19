@@ -9,7 +9,7 @@ export const createSubtitleWithInfo = (subtitle: string, info: string, className
   subtitleElement.textContent = subtitle
 
 
-  if(className === 'card__distance') {
+  if (className === 'card__distance') {
     const span = document.createElement('span')
     span.className = className
     span.textContent = info

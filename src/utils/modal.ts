@@ -1,6 +1,12 @@
-import { validateTypedName, validateTypedNumber } from '../utils'
+import { validateTypedName, validateTypedNumber } from './index.ts'
+import { Delivery, EditDelivery } from '../models'
+import { Status } from '../constants'
 
-const renderModal = () => {
+export const openModal = (delivery: EditDelivery) => {
+  const existingModal = document.getElementById('modal')
+  if (existingModal) return
+
+  const app = document.getElementById('app')
   const dialog = document.createElement('dialog')
   const title = document.createElement('h2')
   const form = document.createElement('form')
@@ -38,34 +44,40 @@ const renderModal = () => {
   inputName.addEventListener('input', validateTypedName)
   inputAddress.addEventListener('input', validateTypedName)
   inputDistance.addEventListener('input', validateTypedNumber)
-  buttonClose.addEventListener('click', () => dialog.close())
 
-  const options = [
-    {
-      value: 'canceled',
-      text: 'Отменён'
-    },
-    {
-      value: 'onDelivery',
-      text: 'Доставляется'
-    },
-    {
-      value: 'delivered',
-      text: 'Доставлен'
-    },
-  ]
+  buttonClose.addEventListener('click', () => {
+    dialog.remove()
+  })
 
-  options.forEach(option => {
+  buttonSubmit.addEventListener('click', () => {
+    delivery.onSave(
+      inputName.value,
+      inputAddress.value,
+      Number(inputDistance.value),
+      select.value as Status
+    )
+    dialog.remove()
+  })
+
+  Object.entries(Status).map(([key, value]) => {
     const optionElement = document.createElement('option')
-    optionElement.value = option.value
-    optionElement.textContent = option.text
+    optionElement.value = key
+    optionElement.textContent = value
     select.append(optionElement)
   })
 
+  inputName.value = delivery.getName()
+  inputAddress.value = delivery.getAddress()
+  inputDistance.value = String(delivery.getDistance())
+  select.value = delivery.getStatus()
+
   form.append(title, buttonClose, inputName, inputAddress, inputDistance, select, buttonSubmit)
   dialog.appendChild(form)
+  app?.appendChild(dialog)
 
-  return dialog
+  dialog.showModal()
 }
 
-export default renderModal
+export const createModal = (delivery: Delivery) => {
+  new EditDelivery(delivery.getName(), delivery.getAddress(), delivery.getDistance(), delivery.getId(), delivery.getStatus())
+}

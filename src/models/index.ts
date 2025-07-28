@@ -1,1 +1,2 @@
-export * from './Delivery.ts'
+export * from './Delivery'
+export * from './EditDelivery'
