@@ -1,6 +1,6 @@
 import { Delivery, EditDelivery } from './models'
-import './style.css'
 import { renderCalculator } from './utils'
+import './style.css'
 
 let deliveryList = [
   new Delivery('Ольга', 'ул. Вымыслов, д. 12', 8),
